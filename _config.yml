@@ -97,4 +97,4 @@ theme: landscape
 deploy:
   type: git
   repo: https://github.com/xiongzhaoxin/xiongzhaoxin.github.io.git
-  branch: public
+  branch: matter
