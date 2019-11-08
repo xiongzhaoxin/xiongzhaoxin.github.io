@@ -5,15 +5,16 @@
   
 
   
-  <title>熊兆鑫的博客</title>
+  <title>力扣数据库题目(1) | 熊兆鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java，jvm，vue">
-<meta property="og:type" content="website">
-<meta property="og:title" content="熊兆鑫的博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;xiongzhaoxin.github.io&#x2F;index.html">
+  <meta name="description" content="力扣（LeetCode）数据库题目开始记录我在力扣所写的数据库题目 计划每天两题，写完免费的在开通会员去写付费题目 介绍每题的解法思路，以及对错，问题所在 so，let’s do this  题目11234567891011121314151617181920编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。+----+--------+| Id | Salary">
+<meta property="og:type" content="article">
+<meta property="og:title" content="力扣数据库题目(1)">
+<meta property="og:url" content="https:&#x2F;&#x2F;xiongzhaoxin.github.io&#x2F;2019&#x2F;11&#x2F;08&#x2F;%E5%8A%9B%E6%89%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE-1&#x2F;index.html">
 <meta property="og:site_name" content="熊兆鑫的博客">
-<meta property="og:description" content="java，jvm，vue">
+<meta property="og:description" content="力扣（LeetCode）数据库题目开始记录我在力扣所写的数据库题目 计划每天两题，写完免费的在开通会员去写付费题目 介绍每题的解法思路，以及对错，问题所在 so，let’s do this  题目11234567891011121314151617181920编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。+----+--------+| Id | Salary">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-08T14:23:12.407Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="熊兆鑫的博客" type="application/atom+xml">
@@ -65,70 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-力扣数据库题目-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/08/%E5%8A%9B%E6%89%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE-2/" class="article-date">
-  <time datetime="2019-11-08T14:23:28.000Z" itemprop="datePublished">2019-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/08/%E5%8A%9B%E6%89%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE-2/">力扣数据库题目(2)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="181-超过经理收入的员工"><a href="#181-超过经理收入的员工" class="headerlink" title="181.超过经理收入的员工"></a>181.超过经理收入的员工</h1><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
-<p>Employee 表包含所有员工，他们的经理也属于员工。每个员工都有一个 Id，此外还有一列对应员工的经理的 Id。</p>
-<p>+—-+——-+——–+———–+<br>| Id | Name  | Salary | ManagerId |<br>+—-+——-+——–+———–+<br>| 1  | Joe   | 70000  | 3         |<br>| 2  | Henry | 80000  | 4         |<br>| 3  | Sam   | 60000  | NULL      |<br>| 4  | Max   | 90000  | NULL      |<br>+—-+——-+——–+———–+<br>给定 Employee 表，编写一个 SQL 查询，该查询可以获取收入超过他们经理的员工的姓名。在上面的表格中，Joe 是唯一一个收入超过他的经理的员工。</p>
-<p>+———-+<br>| Employee |<br>+———-+<br>| Joe      |<br>+———-+</p>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/employees-earning-more-than-their-managers" target="_blank" rel="noopener">https://leetcode-cn.com/problems/employees-earning-more-than-their-managers</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-</blockquote>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<ol>
-<li>employee 包含所有员工，经理也包含在员工表里 :需要查两次employee表,优化性能考虑，选择内连接inner join 进行连接查询</li>
-</ol>
-</blockquote>
-<h3 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.name <span class="keyword">as</span> Employee </span><br><span class="line"><span class="keyword">from</span> employee a <span class="keyword">inner</span> <span class="keyword">join</span> employee b om a.managerId=b.Id</span><br><span class="line"><span class="keyword">where</span> a.salary&gt;b.salary</span><br></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
-<p>考察点</p>
-<ol>
-<li><p>对于单表查询的最优解，首先，单表可以使用很多种查询方式，in查询，外联，内连查询等等</p>
-<p>in查询：查询数据库所有符合条件的，查询速度太慢，不考虑（开发也不建议使用in查询）数据量大可能要查询很久</p>
-<p>连接查询：连接查询可以使用很多查询方式，left join 会展示左表全部数据，而inner join 只会展示当前要查询的数据，效率最好，所以考虑inner join</p>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<p>提交代码后发现力扣还有些骚操作，不同的解题思路，还是挺不错的，就是没有考虑数据库的性能优化感兴趣的人可以去看看我这里贴上网址: <a href="https://leetcode-cn.com/problems/employees-earning-more-than-their-managers/solution/shi-yong-is-not-null-xian-qu-chu-yi-xie-bu-cun-zai/" target="_blank" rel="noopener">力扣解题思路</a></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xiongzhaoxin.github.io/2019/11/08/%E5%8A%9B%E6%89%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE-2/" data-id="ck2q961et0002hsrcdbok1ph8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-力扣数据库题目-1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-力扣数据库题目-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/11/08/%E5%8A%9B%E6%89%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE-1/" class="article-date">
   <time datetime="2019-11-08T14:22:22.000Z" itemprop="datePublished">2019-11-08</time>
@@ -141,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/08/%E5%8A%9B%E6%89%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE-1/">力扣数据库题目(1)</a>
+    <h1 class="article-title" itemprop="name">
+      力扣数据库题目(1)
     </h1>
   
 
@@ -204,97 +142,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/02/hello-world/" class="article-date">
-  <time datetime="2019-11-02T04:04:21.643Z" itemprop="datePublished">2019-11-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2019/11/08/%E5%8A%9B%E6%89%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/02/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xiongzhaoxin.github.io/2019/11/02/hello-world/" data-id="ck2q961eq0001hsrcbmlk9dzd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-我的第一篇博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2019-10-30T14:28:58.000Z" itemprop="datePublished">2019-10-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          力扣数据库题目(2)
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
-    </h1>
   
+    <a href="/2019/11/02/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>这是我的第一篇技术博客，记录博客内容，不定时发布新东西’熊兆鑫’</p>
-<h2 id="Hellowrod"><a href="#Hellowrod" class="headerlink" title="Hellowrod"></a>Hellowrod</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xiongzhaoxin.github.io/2019/10/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="ck2q961eu0003hsrc390wg53l" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
