@@ -95,8 +95,11 @@ theme: yelee
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  -type: git
-  repo: 
-  github: git@github.com:xiongzhaoxin/xiongzhaoxin.github.io.git,master 
-  coding: git@e.coding.net:xiongzhaoxin/blog.git,master
+- type: git
+  repo: git@github.com:xiongzhaoxin/xiongzhaoxin.github.io.git
+  branch: master
+- type: git
+  repo: git@e.coding.net:xiongzhaoxin/blog.git
+  branch: master
+ 
   
