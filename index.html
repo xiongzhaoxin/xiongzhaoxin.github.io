@@ -265,6 +265,111 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-记录一些面试官问的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+      <time datetime="2019-11-13T14:14:14.976Z" itemprop="datePublished">2019-11-13</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/">记录一些面试官问的问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="记录一些面试官问的问题"><a href="#记录一些面试官问的问题" class="headerlink" title="记录一些面试官问的问题"></a>记录一些面试官问的问题</h1><blockquote>
+<p>今天和同事去深职院校招，面试官总结一下面试官问到的问题</p>
+<ol>
+<li><p>SQL练习1：统计班级男女生人数</p>
+<p>1 有如下表格和数据:<br> 2   ID     Name    Class   Sex<br> 3   ———– ———- ———- —-<br> 4   <strong>1</strong>      张1     一班     男<br> 5   <strong>2</strong>      张2     一班     男<br> 6   <strong>3</strong>      张3     二班     女<br> 7   <strong>4</strong>      张4     一班     男<br> 8   <strong>5</strong>      张5     二班     女<br> 9   <strong>6</strong>      张6     二班     女<br>10   <strong>7</strong>      张7     二班     男<br>11   <strong>8</strong>      张8     一班     女<br>12 现要求通过SELECT语句查询出如下结果：<br>13<br>14   班级     男      女<br>15   ———- ———– ———–<br>16   二班     <strong>1</strong>      <strong>3</strong><br>17   一班     <strong>3</strong>      <strong>1</strong></p>
+<p>要求一条语句查询</p>
+</li>
+</ol>
+</blockquote>
+<p><strong>个人解答</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.class 班级,a.nan 男生人数,b.nv 女生人数</span><br><span class="line"><span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">ID</span>) <span class="keyword">nan</span>,<span class="keyword">class</span> <span class="keyword">from</span> student <span class="keyword">where</span> Sex =<span class="string">"男"</span> <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">class</span>) <span class="keyword">as</span> a,</span><br><span class="line">	(<span class="keyword">select</span> (<span class="keyword">count</span>(<span class="keyword">ID</span>) nv <span class="keyword">from</span> student <span class="keyword">where</span> Sex =<span class="string">"女"</span> <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">class</span>))<span class="keyword">as</span> b</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我想到的方法是这个，我前两天刚好看到力扣这个方法，感觉是可以行的通的。</p>
+</blockquote>
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><blockquote>
+<p>假设我有一个五升的水杯和一个六升的，那么请问，我如何获取一个三升的水</p>
+</blockquote>
+<p><strong>个人解答</strong></p>
+<blockquote>
+<p>获取三升的水，一个挺简单的逻辑题，首先六升灌满水，倒给五升，那么就还剩一升的水。然后吧五升的水倒掉，在倒入这个一升水。然后六升在灌满，倒给五升，这样就于二升。在重复一次，这样就获取了一个三升的水。</p>
+</blockquote>
+<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><blockquote>
+<p>假设我打开一个分页，需要100秒，那么有什么方法或数据库可以优化他的查询速度呢？</p>
+</blockquote>
+<p><strong>个人解答</strong></p>
+<blockquote>
+<p>当时我想的是给数据建立一个索引，或者使用视图。这个可以大大提升数据库的查询效率。在网细了可以说使用Redis缓存来优化查询，这样就是查询键值对，速度很快，缓解数据库压力。以上就是我所能想到的，也不知道对不对…</p>
+</blockquote>
+<h3 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h3><blockquote>
+<p>假设我有一页面，上面有两个按钮，同时按下去，怎么保证他们的安全性问题（id都是一样的）</p>
+</blockquote>
+<p><strong>个人解答</strong></p>
+<blockquote>
+<p>可以使用 syschronized来保证线程安全（我也只会这个了）。同事说可以使用uuid这个说永远不会重复的id值来保证id不相同，不过好像跑题了….或者使用redis缓存这个具有事务原子性（想一想感觉也不对，ID都是相同的….） 不太明确百度也没有啥答案….</p>
+</blockquote>
+<h3 id="问题五"><a href="#问题五" class="headerlink" title="问题五"></a>问题五</h3><blockquote>
+<p> 如果我在一个事务里，调用另一个事务，那会怎么样？</p>
+</blockquote>
+<p><strong>个人解答</strong></p>
+<blockquote>
+<p>这个真不会，百度了一下他是这样说的</p>
+</blockquote>
+<blockquote>
+<p>Spring对事务控制的支持统一在TransactionDefinition类中描述，该类有以下  几个重要的接口方法：</p>
+<p>  int getPropagationBehavior()：事务的传播行为<br>  int getIsolationLevel()：事务的隔离级别<br>  int getTimeout()：事务的过期时间<br>  boolean isReadOnly()：事务的读写特性</p>
+<p>这个属于事务传播行为，大概就是吧这两个事务默认当成一个事务，然后执行</p>
+<p>Spring事务传播属性:<br>1.propagation-required: 支持当前事务,如果有就加入当前事务中;如果当前方法没有事务,就新建一个事务;<br>2.propagation-supports: 支持当前事务,如果有就加入当前事务中;如果当前方法没有事务,就以非事务的方式执行;<br>3.propagation-mandatory: 支持当前事务,如果有就加入当前事务中;如果当前没有事务,就抛出异常;<br>4.propagation-requires_new: 新建事务,如果当前存在事务,就把当前事务挂起;如果当前方法没有事务,就新建事务;<br>5.propagation-not-supported: 以非事务方式执行,如果当前方法存在事务就挂起当前事务;如果当前方法不存在事务,就以非事务方式执行;<br>6.propagation-never: 以非事务方式执行,如果当前方法存在事务就抛出异常;如果当前方法不存在事务,就以非事务方式执行;<br>7.propagation-nested: 如果当前方法有事务,则在嵌套事务内执行;如果当前方法没有事务,则与required操作类似;<br>前六个策略类似于EJB CMT，第七个（PROPAGATION_NESTED）是Spring所提供的一个特殊变量。<br>它要求事务管理器或者使用JDBC 3.0 Savepoint API提供嵌套事务行为（如Spring的DataSourceTransactionManager）</p>
+</blockquote>
+<p><strong>以上文章摘自CSDN附上原文<a href="https://blog.csdn.net/levae1024/article/details/82998386?utm_source=blogxgwz1" target="_blank" rel="noopener">链接</a></strong></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-183. 从不订购的客户" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
