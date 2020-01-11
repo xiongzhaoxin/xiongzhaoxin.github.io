@@ -15,15 +15,19 @@
 
 
 
-<meta name="description" content="记录一些面试官问的问题 今天和同事去深职院校招，面试官总结一下面试官问到的问题  SQL练习1：统计班级男女生人数 1 有如下表格和数据: 2   ID     Name    Class   Sex 3   ———– ———- ———- —- 4   1      张1     一班     男 5   2      张2     一班     男 6   3      张3     二班">
+<meta name="description" content="Redis学习笔记(一)Redis简介和安装Redis的简介  Redis 是完全开源免费的，遵守BSD协议，是一个高性能(NOSQL)的key-value数据库,Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记录一些面试官问的问题">
-<meta property="og:url" content="https:&#x2F;&#x2F;xiongzhaoxin.github.io&#x2F;2019&#x2F;11&#x2F;13&#x2F;%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;index.html">
+<meta property="og:title" content="Redis学习笔记(一)">
+<meta property="og:url" content="https:&#x2F;&#x2F;xiongzhaoxin.github.io&#x2F;2020&#x2F;01&#x2F;02&#x2F;Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)&#x2F;index.html">
 <meta property="og:site_name" content="熊兆鑫的博客">
-<meta property="og:description" content="记录一些面试官问的问题 今天和同事去深职院校招，面试官总结一下面试官问到的问题  SQL练习1：统计班级男女生人数 1 有如下表格和数据: 2   ID     Name    Class   Sex 3   ———– ———- ———- —- 4   1      张1     一班     男 5   2      张2     一班     男 6   3      张3     二班">
+<meta property="og:description" content="Redis学习笔记(一)Redis简介和安装Redis的简介  Redis 是完全开源免费的，遵守BSD协议，是一个高性能(NOSQL)的key-value数据库,Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-13T14:14:35.547Z">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;537:1">
+<meta property="og:image" content="https:&#x2F;&#x2F;note.youdao.com&#x2F;yws&#x2F;public&#x2F;resource&#x2F;bfcc478547c920926146675e678e4a1f&#x2F;xmlnote&#x2F;OFFICEFF162BC606A84C428CA958BBEB31E245&#x2F;6141">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;538:1">
+<meta property="og:updated_time" content="2020-01-11T13:03:38.282Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="en-resource:&#x2F;&#x2F;database&#x2F;537:1">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -55,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>记录一些面试官问的问题 | 熊兆鑫的博客</title>
+<title>Redis学习笔记(一) | 熊兆鑫的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -259,11 +263,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-记录一些面试官问的问题" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Redis学习笔记(一)" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
-      <time datetime="2019-11-13T14:14:14.976Z" itemprop="datePublished">2019-11-13</time>
+      <a href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/" class="article-date">
+      <time datetime="2020-01-02T04:40:28.000Z" itemprop="datePublished">2020-01-02</time>
 </a>
 
 
@@ -278,7 +282,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      记录一些面试官问的问题
+      Redis学习笔记(一)
     </h1>
   
 
@@ -295,56 +299,76 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="记录一些面试官问的问题"><a href="#记录一些面试官问的问题" class="headerlink" title="记录一些面试官问的问题"></a>记录一些面试官问的问题</h1><blockquote>
-<p>今天和同事去深职院校招，面试官总结一下面试官问到的问题</p>
-<ol>
-<li><p>SQL练习1：统计班级男女生人数</p>
-<p>1 有如下表格和数据:<br> 2   ID     Name    Class   Sex<br> 3   ———– ———- ———- —-<br> 4   <strong>1</strong>      张1     一班     男<br> 5   <strong>2</strong>      张2     一班     男<br> 6   <strong>3</strong>      张3     二班     女<br> 7   <strong>4</strong>      张4     一班     男<br> 8   <strong>5</strong>      张5     二班     女<br> 9   <strong>6</strong>      张6     二班     女<br>10   <strong>7</strong>      张7     二班     男<br>11   <strong>8</strong>      张8     一班     女<br>12 现要求通过SELECT语句查询出如下结果：<br>13<br>14   班级     男      女<br>15   ———- ———– ———–<br>16   二班     <strong>1</strong>      <strong>3</strong><br>17   一班     <strong>3</strong>      <strong>1</strong></p>
-<p>要求一条语句查询</p>
-</li>
+        <h1 id="Redis学习笔记-一"><a href="#Redis学习笔记-一" class="headerlink" title="Redis学习笔记(一)"></a>Redis学习笔记(一)</h1><h2 id="Redis简介和安装"><a href="#Redis简介和安装" class="headerlink" title="Redis简介和安装"></a>Redis简介和安装</h2><h3 id="Redis的简介"><a href="#Redis的简介" class="headerlink" title="Redis的简介"></a>Redis的简介</h3><blockquote>
+<p> Redis 是完全开源免费的，遵守BSD协议，是一个高性能(NOSQL)的key-value数据库,Redis是一个开源的使用ANSI <a href="https://baike.baidu.com/item/C语言" target="_blank" rel="noopener">C语言</a>编写、支持网络、可基于内存亦可持久化的日志型、Key-Value<a href="https://baike.baidu.com/item/数据库" target="_blank" rel="noopener">数据库</a>，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。(Vmware在资助着redis项目的开发和维护) </p>
+<blockquote>
+<p><a href="https://baike.baidu.com/item/BSD" target="_blank" rel="noopener">BSD</a>是”Berkeley Software Distribution”的缩写，意思是”伯克利软件发行版”。</p>
+<p>BSD开源协议是一个给于使用者很大自由的协议。可以自由的使用，修改源代码，也可以将修改后的代码作为开源或者专有软件再发布。BSD代码鼓励代码共享，但需要尊重代码作者的著作权。BSD由于允许使用者修改和重新发布代码，也允许使用或在BSD代码上开发商业软件发布和销售，因此是对商业集成很友好的协议。</p>
+</blockquote>
+</blockquote>
+<h3 id="NOSQL介绍"><a href="#NOSQL介绍" class="headerlink" title="NOSQL介绍"></a>NOSQL介绍</h3><blockquote>
+<p>NoSQL，泛指非关系型的数据库。随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。<strong><font color=red size=3>NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题</font></strong>。  </p>
+</blockquote>
+<h3 id="NoSQL数据库的四大分类"><a href="#NoSQL数据库的四大分类" class="headerlink" title="NoSQL数据库的四大分类"></a>NoSQL数据库的四大分类</h3><blockquote>
+<p><strong>键值(</strong><a href="https://baike.baidu.com/item/Key-Value" target="_blank" rel="noopener"><em>Key-Value</em></a>*<em>)存储数据库         *</em></p>
+<p><strong>这一类数据库主要会使用到一个哈希表，这个表中有一个特定的键和一个指针指向特定的数据。Key/value模型对于IT系统来说的优势在于简单、易部署。但是如果DBA只对部分值进行查询或更新的时候，Key/value就显得效率低下了。[3]  举例如：Tokyo Cabinet/Tyrant</strong>, Red<strong>is, Voldemort, Oracle BD</strong>B. </p>
+<p>列存储数据库</p>
+<p>​      这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特点是指向了多个列。这些列是由列家族来安排的。如：Cassandra,<font color=red size=3>HBase</font>, Riak. </p>
+<p>文档型数据库</p>
+<p>​       文档型数据库的灵感是来自于Lotus Notes办公软件的，而且它同第一种键值存储相类似。该类型的数据模型是版本化的文档，半结构化的文档以特定的格式存储，比如JSON。文档型数据库可 以看作是键值数据库的升级版，允许之间嵌套键值。而且文档型数据库比键值数据库的查询效率更高。如：CouchDB,<font color=red size=3>MongoDb</font>. 国内也有文档型数据库SequoiaDB，已经开源。 </p>
+<p>图形(Graph)数据库</p>
+<p>​        图形结构的数据库同其他行列以及刚性结构的SQL数据库不同，它是使用灵活的图形模型，并且能够扩展到多个服务器上。NoSQL数据库没有标准的查询语言(SQL)，因此进行数据库查询需要制定数据模型。许多NoSQL数据库都有REST式的数据接口或者查询API。[2]  如：Neo4J, InfoGrid, Infinite Graph.</p>
+<p>​       因此，我们总结NoSQL数据库在以下的这几种情况下比较适用：1、数据模型比较简单；2、需要灵活性更强的IT系统；3、对数据库性能要求较高；4、不需要高度的数据一致性；5、对于给定key，比较容易映射复杂值的环境。 </p>
+</blockquote>
+<h4 id="Redis与其他key-value-缓存产品有一下三个特点"><a href="#Redis与其他key-value-缓存产品有一下三个特点" class="headerlink" title="Redis与其他key - value 缓存产品有一下三个特点:"></a>Redis与其他key - value 缓存产品有一下三个特点:</h4><ol>
+<li>Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 </li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。 </li>
+<li>Redis支持数据的备份，集群等高可用功能。 </li>
 </ol>
-</blockquote>
-<p><strong>个人解答</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.class 班级,a.nan 男生人数,b.nv 女生人数</span><br><span class="line"><span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">ID</span>) <span class="keyword">nan</span>,<span class="keyword">class</span> <span class="keyword">from</span> student <span class="keyword">where</span> Sex =<span class="string">"男"</span> <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">class</span>) <span class="keyword">as</span> a,</span><br><span class="line">	(<span class="keyword">select</span> (<span class="keyword">count</span>(<span class="keyword">ID</span>) nv <span class="keyword">from</span> student <span class="keyword">where</span> Sex =<span class="string">"女"</span> <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">class</span>))<span class="keyword">as</span> b</span><br></pre></td></tr></table></figure>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li><p><strong><font color=red>性能极高-Redis能读的速度是110000次/s，写的速度是81000次/s。</font></strong></p>
+</li>
+<li><p><font color=red> <strong>丰富的数据类型 – Redis支持的类型 String, List, Hash, Set 及 Ordered Set 数据类型操作。</strong> </font></p>
+</li>
+<li><p><font color=red> <strong>原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</strong> </font></p>
+</li>
+<li><p><font color=red> <strong>丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。</strong> </font></p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4></li>
+</ul>
+<ol>
+<li>丰富的数据结构</li>
+<li>高速读写，redis使用自己实现的分离器，代码量很短，没有使用lock（mySql），因此效率非常高</li>
+</ol>
+<hr>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li>持久化。Redis直接将数据存储到内存中，要将数据保存到磁盘上，Redis可以使用两种方式实现持久化过程。<font color=hotpink size=3>定时快照（snapshot）：</font>每个一段时间将整个数据库写到磁盘上，每次均是写全部数据，代价非常高。第二种方式基于<font color=hotpink size=3>语句追加（aof）：</font>值追踪变化数据，但是追加的log可能过大，同事所有的操作均重新执行一遍，回复速度很慢。</li>
+<li>耗内存，占用内存过高</li>
+</ol>
+<h3 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h3><h4 id="Windows安装"><a href="#Windows安装" class="headerlink" title="Windows安装"></a>Windows安装</h4><p><u>不推荐在windows上使用Redis</u></p>
+<h4 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h4><p><strong>安装Redis</strong></p>
+<p>官方网站：<a href="http://redis.io/" target="_blank" rel="noopener">http://redis.io/</a></p>
+<p>官方下载 : <a href="http://redis.io/download" target="_blank" rel="noopener">http://redis.io/download</a> 可以根据需要下载不同版本</p>
+<p><strong>Redis安装</strong></p>
+<p>Redis是C语言开发，安装Redis需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc<br>![img(<a href="https://note.youdao.com/yws/public/resource/bfcc478547c920926146675e678e4a1f/xmlnote/OFFICE639A3BEBCA194A98850A6CF74C8DAFA3/6140.jpg" target="_blank" rel="noopener">https://note.youdao.com/yws/public/resource/bfcc478547c920926146675e678e4a1f/xmlnote/OFFICE639A3BEBCA194A98850A6CF74C8DAFA3/6140.jpg</a>)<br><img src="en-resource://database/537:1" alt="897bda57155f773718b0b3b3e899ce43.png"></p>
+<p><strong>安装gcc</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc automake autoconf libtool make</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>我想到的方法是这个，我前两天刚好看到力扣这个方法，感觉是可以行的通的。</p>
-</blockquote>
-<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><blockquote>
-<p>假设我有一个五升的水杯和一个六升的，那么请问，我如何获取一个三升的水</p>
-</blockquote>
-<p><strong>个人解答</strong></p>
-<blockquote>
-<p>获取三升的水，一个挺简单的逻辑题，首先六升灌满水，倒给五升，那么就还剩一升的水。然后吧五升的水倒掉，在倒入这个一升水。然后六升在灌满，倒给五升，这样就于二升。在重复一次，这样就获取了一个三升的水。</p>
-</blockquote>
-<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><blockquote>
-<p>假设我打开一个分页，需要100秒，那么有什么方法或数据库可以优化他的查询速度呢？</p>
-</blockquote>
-<p><strong>个人解答</strong></p>
-<blockquote>
-<p>当时我想的是给数据建立一个索引，或者使用视图。这个可以大大提升数据库的查询效率。在网细了可以说使用Redis缓存来优化查询，这样就是查询键值对，速度很快，缓解数据库压力。以上就是我所能想到的，也不知道对不对…</p>
-</blockquote>
-<h3 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h3><blockquote>
-<p>假设我有一页面，上面有两个按钮，同时按下去，怎么保证他们的安全性问题（id都是一样的）</p>
-</blockquote>
-<p><strong>个人解答</strong></p>
-<blockquote>
-<p>可以使用 syschronized来保证线程安全（我也只会这个了）。同事说可以使用uuid这个说永远不会重复的id值来保证id不相同，不过好像跑题了….或者使用redis缓存这个具有事务原子性（想一想感觉也不对，ID都是相同的….） 不太明确百度也没有啥答案….</p>
-</blockquote>
-<h3 id="问题五"><a href="#问题五" class="headerlink" title="问题五"></a>问题五</h3><blockquote>
-<p> 如果我在一个事务里，调用另一个事务，那会怎么样？</p>
-</blockquote>
-<p><strong>个人解答</strong></p>
-<blockquote>
-<p>这个真不会，百度了一下他是这样说的</p>
-</blockquote>
-<blockquote>
-<p>Spring对事务控制的支持统一在TransactionDefinition类中描述，该类有以下  几个重要的接口方法：</p>
-<p>  int getPropagationBehavior()：事务的传播行为<br>  int getIsolationLevel()：事务的隔离级别<br>  int getTimeout()：事务的过期时间<br>  boolean isReadOnly()：事务的读写特性</p>
-<p>这个属于事务传播行为，大概就是吧这两个事务默认当成一个事务，然后执行</p>
-<p>Spring事务传播属性:<br>1.propagation-required: 支持当前事务,如果有就加入当前事务中;如果当前方法没有事务,就新建一个事务;<br>2.propagation-supports: 支持当前事务,如果有就加入当前事务中;如果当前方法没有事务,就以非事务的方式执行;<br>3.propagation-mandatory: 支持当前事务,如果有就加入当前事务中;如果当前没有事务,就抛出异常;<br>4.propagation-requires_new: 新建事务,如果当前存在事务,就把当前事务挂起;如果当前方法没有事务,就新建事务;<br>5.propagation-not-supported: 以非事务方式执行,如果当前方法存在事务就挂起当前事务;如果当前方法不存在事务,就以非事务方式执行;<br>6.propagation-never: 以非事务方式执行,如果当前方法存在事务就抛出异常;如果当前方法不存在事务,就以非事务方式执行;<br>7.propagation-nested: 如果当前方法有事务,则在嵌套事务内执行;如果当前方法没有事务,则与required操作类似;<br>前六个策略类似于EJB CMT，第七个（PROPAGATION_NESTED）是Spring所提供的一个特殊变量。<br>它要求事务管理器或者使用JDBC 3.0 Savepoint API提供嵌套事务行为（如Spring的DataSourceTransactionManager）</p>
-</blockquote>
-<p><strong>以上文章摘自CSDN附上原文<a href="https://blog.csdn.net/levae1024/article/details/82998386?utm_source=blogxgwz1" target="_blank" rel="noopener">链接</a></strong></p>
+<p> gcc的安装很简单，首先要确保root登录，其次就是Linux要能连外网 </p>
+<p><strong>注意：</strong>运行yum是出现/var/run/yum.pid已被锁定，PID为XXXX的另一个程序正在运行的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -f /var/run/yum.pid</span><br><span class="line">~</span><br></pre></td></tr></table></figure>
+
+<p>使用这句便可以解决</p>
+<p><strong>安装Redis</strong></p>
+<p>以下以redis-4.0.1版本为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">命令1： wget http://download.redis.io/releases/redis-4.0.1.tar.gz</span><br><span class="line">命令2：tar zxvf redis-4.0.1.tar.gz</span><br><span class="line">命令3： cd redis-4.0.1</span><br><span class="line">命令4（编译）： make   或 make MALLOC=libc</span><br></pre></td></tr></table></figure>
+
+<p>运行完以后出现下图代表成功</p>
+<p> <img src="https://note.youdao.com/yws/public/resource/bfcc478547c920926146675e678e4a1f/xmlnote/OFFICEFF162BC606A84C428CA958BBEB31E245/6141" alt="img"> </p>
+<p><img src="en-resource://database/538:1" alt="e0b65349313f373452b38bb17419ed94.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令5：make PREFIX=/usr/local/redis install</span><br></pre></td></tr></table></figure>
+
+<p>安装编译后的文件，到指定目录：</p>
+<p><strong><font color=red>注意:</font></strong> PREFIX必须大写、同时会自动为我们创建redis目录，并将结果安装此目录 </p>
 
       
     </div>
@@ -353,13 +377,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/">记录一些面试官问的问题</a></p>
+        <p><span>本文标题:</span><a href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/">Redis学习笔记(一)</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">熊兆鑫</a></p>
-        <p><span>发布时间:</span>2019-11-13, 22:14:14</p>
-        <p><span>最后更新:</span>2019-11-13, 22:14:35</p>
+        <p><span>发布时间:</span>2020-01-02, 12:40:28</p>
+        <p><span>最后更新:</span>2020-01-11, 21:03:38</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/" title="记录一些面试官问的问题">https://xiongzhaoxin.github.io/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://xiongzhaoxin.github.io/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/　　作者: 熊兆鑫" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/" title="Redis学习笔记(一)">https://xiongzhaoxin.github.io/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://xiongzhaoxin.github.io/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/　　作者: 熊兆鑫" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -371,16 +395,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/">
-                    Hibernate 框架
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/11/12/183.%20%E4%BB%8E%E4%B8%8D%E8%AE%A2%E8%B4%AD%E7%9A%84%E5%AE%A2%E6%88%B7/">
-                    183. 从不订购的客户
+                <a href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/">
+                    Hibernate 框架
                 </a>
             </div>
         
@@ -392,7 +410,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#记录一些面试官问的问题"><span class="toc-number">1.</span> <span class="toc-text">记录一些面试官问的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题二"><span class="toc-number">1.0.1.</span> <span class="toc-text">问题二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题三"><span class="toc-number">1.0.2.</span> <span class="toc-text">问题三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题四"><span class="toc-number">1.0.3.</span> <span class="toc-text">问题四</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题五"><span class="toc-number">1.0.4.</span> <span class="toc-text">问题五</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis学习笔记-一"><span class="toc-number">1.</span> <span class="toc-text">Redis学习笔记(一)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis简介和安装"><span class="toc-number">1.1.</span> <span class="toc-text">Redis简介和安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis的简介"><span class="toc-number">1.1.1.</span> <span class="toc-text">Redis的简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOSQL介绍"><span class="toc-number">1.1.2.</span> <span class="toc-text">NOSQL介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NoSQL数据库的四大分类"><span class="toc-number">1.1.3.</span> <span class="toc-text">NoSQL数据库的四大分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis与其他key-value-缓存产品有一下三个特点"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">Redis与其他key - value 缓存产品有一下三个特点:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优点"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis安装"><span class="toc-number">1.1.4.</span> <span class="toc-text">Redis安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows安装"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">Windows安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux安装"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">Linux安装</span></a></li></ol></li></ol></li></ol></li></ol>
         
     </div>
     <style>
@@ -428,7 +446,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"记录一些面试官问的问题　| 熊兆鑫的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Redis学习笔记(一)　| 熊兆鑫的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -448,15 +466,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/" title="上一篇: Hibernate 框架">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/11/12/183.%20%E4%BB%8E%E4%B8%8D%E8%AE%A2%E8%B4%AD%E7%9A%84%E5%AE%A2%E6%88%B7/" title="下一篇: 183. 从不订购的客户">
+            <a href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/" title="下一篇: Hibernate 框架">
                 <i class="fa fa-angle-right"></i>
             </a>
         

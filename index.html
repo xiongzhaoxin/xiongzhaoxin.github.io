@@ -265,6 +265,298 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Redis学习笔记(一)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/" class="article-date">
+      <time datetime="2020-01-02T04:40:28.000Z" itemprop="datePublished">2020-01-02</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/">Redis学习笔记(一)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Redis学习笔记-一"><a href="#Redis学习笔记-一" class="headerlink" title="Redis学习笔记(一)"></a>Redis学习笔记(一)</h1><h2 id="Redis简介和安装"><a href="#Redis简介和安装" class="headerlink" title="Redis简介和安装"></a>Redis简介和安装</h2><h3 id="Redis的简介"><a href="#Redis的简介" class="headerlink" title="Redis的简介"></a>Redis的简介</h3><blockquote>
+<p> Redis 是完全开源免费的，遵守BSD协议，是一个高性能(NOSQL)的key-value数据库,Redis是一个开源的使用ANSI <a href="https://baike.baidu.com/item/C语言" target="_blank" rel="noopener">C语言</a>编写、支持网络、可基于内存亦可持久化的日志型、Key-Value<a href="https://baike.baidu.com/item/数据库" target="_blank" rel="noopener">数据库</a>，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。(Vmware在资助着redis项目的开发和维护) </p>
+<blockquote>
+<p><a href="https://baike.baidu.com/item/BSD" target="_blank" rel="noopener">BSD</a>是”Berkeley Software Distribution”的缩写，意思是”伯克利软件发行版”。</p>
+<p>BSD开源协议是一个给于使用者很大自由的协议。可以自由的使用，修改源代码，也可以将修改后的代码作为开源或者专有软件再发布。BSD代码鼓励代码共享，但需要尊重代码作者的著作权。BSD由于允许使用者修改和重新发布代码，也允许使用或在BSD代码上开发商业软件发布和销售，因此是对商业集成很友好的协议。</p>
+</blockquote>
+</blockquote>
+<h3 id="NOSQL介绍"><a href="#NOSQL介绍" class="headerlink" title="NOSQL介绍"></a>NOSQL介绍</h3><blockquote>
+<p>NoSQL，泛指非关系型的数据库。随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。<strong><font color=red size=3>NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题</font></strong>。  </p>
+</blockquote>
+<h3 id="NoSQL数据库的四大分类"><a href="#NoSQL数据库的四大分类" class="headerlink" title="NoSQL数据库的四大分类"></a>NoSQL数据库的四大分类</h3><blockquote>
+<p><strong>键值(</strong><a href="https://baike.baidu.com/item/Key-Value" target="_blank" rel="noopener"><em>Key-Value</em></a>*<em>)存储数据库         *</em></p>
+<p><strong>这一类数据库主要会使用到一个哈希表，这个表中有一个特定的键和一个指针指向特定的数据。Key/value模型对于IT系统来说的优势在于简单、易部署。但是如果DBA只对部分值进行查询或更新的时候，Key/value就显得效率低下了。[3]  举例如：Tokyo Cabinet/Tyrant</strong>, Red<strong>is, Voldemort, Oracle BD</strong>B. </p>
+<p>列存储数据库</p>
+<p>​      这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特点是指向了多个列。这些列是由列家族来安排的。如：Cassandra,<font color=red size=3>HBase</font>, Riak. </p>
+<p>文档型数据库</p>
+<p>​       文档型数据库的灵感是来自于Lotus Notes办公软件的，而且它同第一种键值存储相类似。该类型的数据模型是版本化的文档，半结构化的文档以特定的格式存储，比如JSON。文档型数据库可 以看作是键值数据库的升级版，允许之间嵌套键值。而且文档型数据库比键值数据库的查询效率更高。如：CouchDB,<font color=red size=3>MongoDb</font>. 国内也有文档型数据库SequoiaDB，已经开源。 </p>
+<p>图形(Graph)数据库</p>
+<p>​        图形结构的数据库同其他行列以及刚性结构的SQL数据库不同，它是使用灵活的图形模型，并且能够扩展到多个服务器上。NoSQL数据库没有标准的查询语言(SQL)，因此进行数据库查询需要制定数据模型。许多NoSQL数据库都有REST式的数据接口或者查询API。[2]  如：Neo4J, InfoGrid, Infinite Graph.</p>
+<p>​       因此，我们总结NoSQL数据库在以下的这几种情况下比较适用：1、数据模型比较简单；2、需要灵活性更强的IT系统；3、对数据库性能要求较高；4、不需要高度的数据一致性；5、对于给定key，比较容易映射复杂值的环境。 </p>
+</blockquote>
+<h4 id="Redis与其他key-value-缓存产品有一下三个特点"><a href="#Redis与其他key-value-缓存产品有一下三个特点" class="headerlink" title="Redis与其他key - value 缓存产品有一下三个特点:"></a>Redis与其他key - value 缓存产品有一下三个特点:</h4><ol>
+<li>Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 </li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。 </li>
+<li>Redis支持数据的备份，集群等高可用功能。 </li>
+</ol>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li><p><strong><font color=red>性能极高-Redis能读的速度是110000次/s，写的速度是81000次/s。</font></strong></p>
+</li>
+<li><p><font color=red> <strong>丰富的数据类型 – Redis支持的类型 String, List, Hash, Set 及 Ordered Set 数据类型操作。</strong> </font></p>
+</li>
+<li><p><font color=red> <strong>原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</strong> </font></p>
+</li>
+<li><p><font color=red> <strong>丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。</strong> </font></p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4></li>
+</ul>
+<ol>
+<li>丰富的数据结构</li>
+<li>高速读写，redis使用自己实现的分离器，代码量很短，没有使用lock（mySql），因此效率非常高</li>
+</ol>
+<hr>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li>持久化。Redis直接将数据存储到内存中，要将数据保存到磁盘上，Redis可以使用两种方式实现持久化过程。<font color=hotpink size=3>定时快照（snapshot）：</font>每个一段时间将整个数据库写到磁盘上，每次均是写全部数据，代价非常高。第二种方式基于<font color=hotpink size=3>语句追加（aof）：</font>值追踪变化数据，但是追加的log可能过大，同事所有的操作均重新执行一遍，回复速度很慢。</li>
+<li>耗内存，占用内存过高</li>
+</ol>
+<h3 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h3><h4 id="Windows安装"><a href="#Windows安装" class="headerlink" title="Windows安装"></a>Windows安装</h4><p><u>不推荐在windows上使用Redis</u></p>
+<h4 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h4><p><strong>安装Redis</strong></p>
+<p>官方网站：<a href="http://redis.io/" target="_blank" rel="noopener">http://redis.io/</a></p>
+<p>官方下载 : <a href="http://redis.io/download" target="_blank" rel="noopener">http://redis.io/download</a> 可以根据需要下载不同版本</p>
+<p><strong>Redis安装</strong></p>
+<p>Redis是C语言开发，安装Redis需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc<br>![img(<a href="https://note.youdao.com/yws/public/resource/bfcc478547c920926146675e678e4a1f/xmlnote/OFFICE639A3BEBCA194A98850A6CF74C8DAFA3/6140.jpg" target="_blank" rel="noopener">https://note.youdao.com/yws/public/resource/bfcc478547c920926146675e678e4a1f/xmlnote/OFFICE639A3BEBCA194A98850A6CF74C8DAFA3/6140.jpg</a>)<br><img src="en-resource://database/537:1" alt="897bda57155f773718b0b3b3e899ce43.png"></p>
+<p><strong>安装gcc</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc automake autoconf libtool make</span><br></pre></td></tr></table></figure>
+
+<p> gcc的安装很简单，首先要确保root登录，其次就是Linux要能连外网 </p>
+<p><strong>注意：</strong>运行yum是出现/var/run/yum.pid已被锁定，PID为XXXX的另一个程序正在运行的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -f /var/run/yum.pid</span><br><span class="line">~</span><br></pre></td></tr></table></figure>
+
+<p>使用这句便可以解决</p>
+<p><strong>安装Redis</strong></p>
+<p>以下以redis-4.0.1版本为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">命令1： wget http://download.redis.io/releases/redis-4.0.1.tar.gz</span><br><span class="line">命令2：tar zxvf redis-4.0.1.tar.gz</span><br><span class="line">命令3： cd redis-4.0.1</span><br><span class="line">命令4（编译）： make   或 make MALLOC=libc</span><br></pre></td></tr></table></figure>
+
+<p>运行完以后出现下图代表成功</p>
+<p> <img src="https://note.youdao.com/yws/public/resource/bfcc478547c920926146675e678e4a1f/xmlnote/OFFICEFF162BC606A84C428CA958BBEB31E245/6141" alt="img"> </p>
+<p><img src="en-resource://database/538:1" alt="e0b65349313f373452b38bb17419ed94.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令5：make PREFIX=/usr/local/redis install</span><br></pre></td></tr></table></figure>
+
+<p>安装编译后的文件，到指定目录：</p>
+<p><strong><font color=red>注意:</font></strong> PREFIX必须大写、同时会自动为我们创建redis目录，并将结果安装此目录 </p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hibernate 框架" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/" class="article-date">
+      <time datetime="2019-12-08T13:23:46.000Z" itemprop="datePublished">2019-12-08</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/">Hibernate 框架</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Hibernate-框架"><a href="#Hibernate-框架" class="headerlink" title="Hibernate 框架"></a>Hibernate 框架</h1><h3 id="一，什么是Hibernate"><a href="#一，什么是Hibernate" class="headerlink" title="一，什么是Hibernate"></a>一，什么是Hibernate</h3><blockquote>
+<p>Hibernate 是一个开源框架，它是对象关联关系映射的框架，它对 JDBC 做了轻量级的封装，使 java 程序员可以使用面向对象的思想来操纵数据库。</p>
+</blockquote>
+<p>说白了，hibernate就是一个轻量级、全自动的orm框架，它将pojo与数据库建立映射关系，程序员可以使用hql语句对数据库数据表进行交互操作。</p>
+<h3 id="二，什么是ORM"><a href="#二，什么是ORM" class="headerlink" title="二，什么是ORM"></a>二，什么是ORM</h3><blockquote>
+<p>对象关系映射（英语：Object Relation Mapping，简称ORM，或O/RM，或O/R mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。</p>
+<p>对象-关系映射，是随着面向对象的软件开发方法发展而产生的。面向对象的开发方法是当今企业级应用开发环境中的主流开发方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现形式，业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中，关系数据无法直接表达多对多关联和继承关系。因此，对象-关系映射(ORM)系统一般以中间件的形式存在，主要实现程序对象到关系数据库数据的映射。</p>
+<p>ORM模型的简单性简化了数据库查询过程。使用ORM查询工具，用户可以访问期望数据，而不必理解数据库的底层结构。</p>
+</blockquote>
+<p><img src="C:%5CUsers%5CAdministrator%5CDesktop%5C20170320230433928.png" alt="20170320230433928"></p>
+<p>简单来说，我们使用ORM可以将我们的对象(或类)去进行映射，使得我们可以去操作对象就能完成对表的操作。</p>
+<h3 id="为什么使用Hibernate（Hibernate的优点）"><a href="#为什么使用Hibernate（Hibernate的优点）" class="headerlink" title="为什么使用Hibernate（Hibernate的优点）"></a>为什么使用Hibernate（Hibernate的优点）</h3><ul>
+<li><p>对 JDBC 访问数据库的代码做了封装，大大简化了数据访问层繁琐的重复性代码</p>
+</li>
+<li><p>Hibernate 是一个基于 JDBC 的主流持久化框架，是一个优秀的 ORM 实现。它很大程度的简化了 DAO 层的编码工作</p>
+</li>
+<li><p>Hibernate 使用 Java 反射机制，而不是字节码增强程序来实现透明性</p>
+</li>
+<li><p>Hibernate 的性能非常好，因为它是个轻量级框架。映射的灵活性很出色。它支持各种关系数据库，从一对一到多对多的各种复杂关系</p>
+<hr>
+</li>
+</ul>
+<p>  简单来说：hibernate把数据库的增删查改代码封装成自己的hql语法，大大简化了写sql语法的时间，使用<strong>反射机制来提高代码灵活性和可配置性，降低代码耦合</strong>，使用映射提高了代码的灵活性、非侵入性、移植性。</p>
+<h3 id="Hibernate的缺点"><a href="#Hibernate的缺点" class="headerlink" title="Hibernate的缺点"></a>Hibernate的缺点</h3><ul>
+<li>无法对 SQL 进行优化</li>
+<li>框架中使用ORM原则, 导致配置过于复杂</li>
+<li>执行效率和原生的 JDBC 相比偏差:，特别是在批量数据处理的时候</li>
+<li>不支持批量修改、删除</li>
+</ul>
+<hr>
+<pre><code>简单说：由于封装的太好了，反而不好使用原生sql语句对数据库优化，ORM原则需要大量的配置，假如有几百张表，需要配置很久。执行效率慢是hibernate默认延迟加载，实际开发中有些情况下会关闭延迟加载（lazy=false）这时大大影响效率，打个比方在“一对多”的关系映射中，查询“一”的一方，那么多的“一方”也会立刻加载出来，如果“一”的一方关联了大量的数据，那么“多”的一方都会被查询出来，造成不必要的资源浪费。</code></pre><h3 id="Hibernate-的缓存机制"><a href="#Hibernate-的缓存机制" class="headerlink" title="Hibernate 的缓存机制"></a>Hibernate 的缓存机制</h3><p><strong>Hibernate 缓存的作用</strong>：Hibernate 是一个持久层框架，经常访问物理数据库，为了降低应用程序对物理数据源访问的频次，从而提高应用程序的运行性能。缓存内的数据是对物理数据源中数据的复制，应用程序在运行时从缓存读写数据，在特定的时刻或事件会同步缓存和物理数据源的数据。</p>
+<p>白话： 假设一万个人需要知道一款手机的价格，那么就需要hibernate去访问数据库查询这款手机的价格，大量的访问数据库导致数据库宕机或其他问题。那么hibernate把这个结果缓存下来。就可以不需要访问数据库来直接给用户返回这款手机的价格。</p>
+<p><strong>Hibernate 缓存分类</strong>：Hibernate 缓存包括两大类：Hibernate 一级缓存和 Hibernate 二级缓存。</p>
+<blockquote>
+<p>Hibernate 一级缓存又称为“Session的缓存”，它是内置的，不能被卸载。由于 Session 对象的生命周期通常对应一个数据库事务或者一个应用事务，因此它的缓存是事务范围的缓存。一级缓存是必需的，不允许而且事实上也无法卸除。在第一级缓存中，持久化类的每个实例都具有唯一的 OID。</p>
+</blockquote>
+<blockquote>
+<p>Hibernate 二级缓存又称为“SessionFactory的缓存”，由于 SessionFactory 对象的生命周期和应用程序的整个过程对应，因此 Hibernate 二级缓存是进程范围或者集群范围的缓存，有可能出现并发问题，因此需要采用适当的并发访问策略，该策略为被缓存的数据提供了事务隔离级别。第二级缓存是可选的，是一个可配置的插件，在默认情况下，SessionFactory 不会启用这个插件</p>
+</blockquote>
+<hr>
+<p><strong>Q:什么样的数据适合存放到第二级缓存中 ？</strong></p>
+<p><strong>A:</strong>很少被修改的数据；不是很重要的数据，允许偶尔出现并发；不会被并发访问的数据；常量数据</p>
+<p><strong>Q:不适合存放到第二级缓存的数据  ？</strong></p>
+<p><strong>A:</strong>经常被修改的数据；绝对不允许出现并发访问的数据，如财务数据；与其他应用共享的数据</p>
+<p><strong>Q:Hibernate 查找对象如何应用缓存 ？</strong></p>
+<p><strong>A:</strong>当 Hibernate 根据 ID 访问数据对象的时候，首先从 Session 一级缓存中查；查不到，如果配置了二级缓存，那么从二级缓存中查；如果都查不到，再查询数据库，把结果按照 ID 放入到缓存，删除、更新、增加数据的时候，同时更新缓存。</p>
+<h3 id="Hibernate-懒加载"><a href="#Hibernate-懒加载" class="headerlink" title="Hibernate 懒加载"></a>Hibernate 懒加载</h3><blockquote>
+<p>懒加载(lazy)就是延迟加载。至于为什么要用懒加载呢，就是当我们要访问的数据量过大时，明显用缓存不太合适，因为内存容量有限，为了减少并发量，减少系统资源的消耗，我们让数据在需要的时候才进行加载，这时 Hibernate 用懒加载机制来弥补这种缺陷，但是这只是弥补而不是用了懒加载总体性能就提高了。</p>
+</blockquote>
+<ul>
+<li><p>对于 Hibernate get 方法，Hibernate 会确认一下该 id 对应的数据是否存在，首先在 session 缓存中查找，然后在二级缓存中查找，还没有就查询数据库，数据库中没有就返回 null。</p>
+</li>
+<li><p>Hibernate load 方法加载实体对象的时候，根据映射文件上类级别的 lazy 属性的配置(默认为true)，分情况讨论：</p>
+<ul>
+<li>若为 true，则首先在 Session 缓存中查找，看看该 id 对应的对象是否存在，不存在则使用延迟加载，返回实体的代理类对象(该代理类为实体类的子类，由CGLIB动态生成)。等到具体使用该对象(除获取OID以外)的时候，再查询二级缓存和数据库，若仍没发现符合条件的记录，则会抛出一个 ObjectNotFoundException。</li>
+<li>若为false，就跟 Hibernateget 方法查找顺序一样，只是最终若没发现符合条件的记录，则会抛出一个 ObjectNotFoundException。</li>
+</ul>
+</li>
+</ul>
+<p>这里 get 和 load 有两个重要区别：</p>
+<ul>
+<li>如果未能发现符合条件的记录， Hibernate get 方法返回 null，而 load 方法会抛出一个 ObjectNotFoundException；</li>
+<li>load 方法可返回没有加载实体数据的代理类实例，而 get 方法永远返回有实体数据的对象。</li>
+</ul>
+<p>总之根本区别 hibernate 对于 load 方法认为该数据在数据库中一定存在，可以放心的使用代理来延迟加载，如果在使用过程中发现了问题，只能抛异常；而对于 get 方 法，hibernate 一定要获取到真实的数据，否则返回 null</p>
+<h3 id="Hibernate-与-MyBatis-的区别"><a href="#Hibernate-与-MyBatis-的区别" class="headerlink" title="Hibernate 与  MyBatis 的区别"></a>Hibernate 与  MyBatis 的区别</h3><ul>
+<li><p><strong>相同点</strong>   </p>
+<ol>
+<li><p>Hibernate与MyBatis都可以是通过SessionFactoryBuider由XML配置文件生成SessionFactory，然后由SessionFactory 生成Session，最后由Session来开启执行事务和SQL语句。</p>
+<p>其中SessionFactoryBuider，SessionFactory，Session的生命周期都是差不多的。Hibernate和MyBatis都支持JDBC和JTA事务处理。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>不同点</strong></p>
+<ol>
+<li><p><font color='red'>hibernate是全自动，而mybatis是半自动</font></p>
+<p>hibernate完全可以通过对象关系模型实现对数据库的操作，拥有完整的JavaBean对象与数据库的映射结构来自动生成sql。而mybatis仅有基本的字段映射，对象数据以及对象实际关系仍然需要通过手写sql来实现和管理。</p>
+</li>
+<li><p><font color='red'>hibernate数据库移植性远大于mybatis</font></p>
+<p>hibernate通过它强大的映射结构和hql语言，大大降低了对象与数据库（Oracle、MySQL等）的耦合性，而mybatis由于需要手写sql，因此与数据库的耦合性直接取决于程序员写sql的方法，如果sql不具通用性而用了很多某数据库特性的sql语句的话，移植性也会随之降低很多，成本很高。</p>
+</li>
+<li><p><font color='red'>hibernate拥有完整的日志系统，mybatis则欠缺一些</font></p>
+<p>hibernate日志系统非常健全，涉及广泛，包括：sql记录、关系异常、优化警告、缓存提示、脏数据警告等；而mybatis则除了基本记录功能外，功能薄弱很多。</p>
+</li>
+<li><p><font color='red'>mybatis相比hibernate需要关心很多细节&lt;</p>
+<p>hibernate配置要比mybatis复杂的多，学习成本也比mybatis高。但也正因为mybatis使用简单，才导致它要比hibernate关心很多技术细节。mybatis由于不用考虑很多细节，开发模式上与传统jdbc区别很小，因此很容易上手并开发项目，但忽略细节会导致项目前期bug较多，因而开发出相对稳定的软件很慢，而开发出软件却很快。hibernate则正好与之相反。但是如果使用hibernate很熟练的话，实际上开发效率丝毫不差于甚至超越mybatis。</p>
+</li>
+<li><p><font color='red'>mybatis相比hibernate需要关心很多细节</font></p>
+<p>hibernate配置要比mybatis复杂的多，学习成本也比mybatis高。但也正因为mybatis使用简单，才导致它要比hibernate关心很多技术细节。mybatis由于不用考虑很多细节，开发模式上与传统jdbc区别很小，因此很容易上手并开发项目，但忽略细节会导致项目前期bug较多，因而开发出相对稳定的软件很慢，而开发出软件却很快。hibernate则正好与之相反。但是如果使用hibernate很熟练的话，实际上开发效率丝毫不差于甚至超越mybatis。</p>
+</li>
+<li><p><font color='red'>缓存机制上，hibernate要比mybatis更好一些</font></p>
+<p>MyBatis的二级缓存配置都是在每个具体的表-对象映射中进行详细配置，这样针对不同的表可以自定义不同的缓存机制。并且Mybatis可以在命名空间中共享相同的缓存配置和实例，通过Cache-ref来实现。</p>
+<p>而Hibernate对查询对象有着良好的管理机制，用户无需关心SQL。所以在使用二级缓存时如果出现脏数据，系统会报出错误并提示。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>Hibernate 优势</strong><br> Hibernate 的 DAO 层开发比 MyBatis 简单，Mybatis 需要维护 SQL 和结果映射。<br> Hibernate 对对象的维护和缓存要比 MyBatis 好，对增删改查的对象的维护要方便。<br> Hibernate 数据库移植性很好，MyBatis 的数据库移植性不好，不同的数据库需要写不同 SQL。<br> Hibernate 有更好的二级缓存机制，可以使用第三方缓存。MyBatis 本身提供的缓存机制不佳。</p>
+</li>
+<li><p><strong>Mybatis 优势</strong><br> MyBatis 可以进行更为细致的 SQL 优化，可以减少查询字段。<br> MyBatis容易掌握，而Hibernate门槛较高。</p>
+</li>
+<li><p><strong>总结</strong></p>
+<ol>
+<li><p><strong>两者相同点</strong><br>Hibernate和Mybatis的二级缓存除了采用系统默认的缓存机制外，都可以通过实现你自己的缓存或为其他第三方缓存方案，创建适配器来完全覆盖缓存行为。</p>
+</li>
+<li><p><strong>两者不同点</strong><br>Hibernate的二级缓存配置在SessionFactory生成的配置文件中进行详细配置，然后再在具体的表-对象映射中配置是那种缓存。而MyBatis在使用二级缓存时需要特别小心。如果不能完全确定数据更新操作的波及范围，避免Cache的盲目使用。否则，脏数据的出现会给系统的正常运行带来很大的隐患。</p>
+</li>
+</ol>
+<p><strong>简单来说</strong>：</p>
+<p>MyBatis：小巧、方便、高效、简单、直接、半自动</p>
+<p>Hibernate：强大、方便、高效、复杂、绕弯子、全自动</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-记录一些面试官问的问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -828,7 +1120,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2019 熊兆鑫
+                2016-2020 熊兆鑫
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>

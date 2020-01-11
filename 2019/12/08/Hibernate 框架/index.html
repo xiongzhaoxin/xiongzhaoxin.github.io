@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="熊兆鑫" />
+
+
+
+<meta name="description" content="Hibernate 框架一，什么是Hibernate Hibernate 是一个开源框架，它是对象关联关系映射的框架，它对 JDBC 做了轻量级的封装，使 java 程序员可以使用面向对象的思想来操纵数据库。  说白了，hibernate就是一个轻量级、全自动的orm框架，它将pojo与数据库建立映射关系，程序员可以使用hql语句对数据库数据表进行交互操作。 二，什么是ORM 对象关系映射（英语：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate 框架">
+<meta property="og:url" content="https:&#x2F;&#x2F;xiongzhaoxin.github.io&#x2F;2019&#x2F;12&#x2F;08&#x2F;Hibernate%20%E6%A1%86%E6%9E%B6&#x2F;index.html">
+<meta property="og:site_name" content="熊兆鑫的博客">
+<meta property="og:description" content="Hibernate 框架一，什么是Hibernate Hibernate 是一个开源框架，它是对象关联关系映射的框架，它对 JDBC 做了轻量级的封装，使 java 程序员可以使用面向对象的思想来操纵数据库。  说白了，hibernate就是一个轻量级、全自动的orm框架，它将pojo与数据库建立映射关系，程序员可以使用hql语句对数据库数据表进行交互操作。 二，什么是ORM 对象关系映射（英语：">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CDesktop%5C20170320230433928.png">
+<meta property="og:updated_time" content="2020-01-11T13:02:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5CAdministrator%5CDesktop%5C20170320230433928.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="熊兆鑫的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Hibernate 框架 | 熊兆鑫的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/baner.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">熊兆鑫</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">技术博客，不定时更新</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/1210094565@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/" target="_blank" rel="noopener">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">熊兆鑫</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/baner.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">熊兆鑫</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">技术博客，不定时更新</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/1210094565@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Hibernate 框架" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/" class="article-date">
+      <time datetime="2019-12-08T13:23:46.000Z" itemprop="datePublished">2019-12-08</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hibernate 框架
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Hibernate-框架"><a href="#Hibernate-框架" class="headerlink" title="Hibernate 框架"></a>Hibernate 框架</h1><h3 id="一，什么是Hibernate"><a href="#一，什么是Hibernate" class="headerlink" title="一，什么是Hibernate"></a>一，什么是Hibernate</h3><blockquote>
+<p>Hibernate 是一个开源框架，它是对象关联关系映射的框架，它对 JDBC 做了轻量级的封装，使 java 程序员可以使用面向对象的思想来操纵数据库。</p>
+</blockquote>
+<p>说白了，hibernate就是一个轻量级、全自动的orm框架，它将pojo与数据库建立映射关系，程序员可以使用hql语句对数据库数据表进行交互操作。</p>
+<h3 id="二，什么是ORM"><a href="#二，什么是ORM" class="headerlink" title="二，什么是ORM"></a>二，什么是ORM</h3><blockquote>
+<p>对象关系映射（英语：Object Relation Mapping，简称ORM，或O/RM，或O/R mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。</p>
+<p>对象-关系映射，是随着面向对象的软件开发方法发展而产生的。面向对象的开发方法是当今企业级应用开发环境中的主流开发方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现形式，业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中，关系数据无法直接表达多对多关联和继承关系。因此，对象-关系映射(ORM)系统一般以中间件的形式存在，主要实现程序对象到关系数据库数据的映射。</p>
+<p>ORM模型的简单性简化了数据库查询过程。使用ORM查询工具，用户可以访问期望数据，而不必理解数据库的底层结构。</p>
+</blockquote>
+<p><img src="C:%5CUsers%5CAdministrator%5CDesktop%5C20170320230433928.png" alt="20170320230433928"></p>
+<p>简单来说，我们使用ORM可以将我们的对象(或类)去进行映射，使得我们可以去操作对象就能完成对表的操作。</p>
+<h3 id="为什么使用Hibernate（Hibernate的优点）"><a href="#为什么使用Hibernate（Hibernate的优点）" class="headerlink" title="为什么使用Hibernate（Hibernate的优点）"></a>为什么使用Hibernate（Hibernate的优点）</h3><ul>
+<li><p>对 JDBC 访问数据库的代码做了封装，大大简化了数据访问层繁琐的重复性代码</p>
+</li>
+<li><p>Hibernate 是一个基于 JDBC 的主流持久化框架，是一个优秀的 ORM 实现。它很大程度的简化了 DAO 层的编码工作</p>
+</li>
+<li><p>Hibernate 使用 Java 反射机制，而不是字节码增强程序来实现透明性</p>
+</li>
+<li><p>Hibernate 的性能非常好，因为它是个轻量级框架。映射的灵活性很出色。它支持各种关系数据库，从一对一到多对多的各种复杂关系</p>
+<hr>
+</li>
+</ul>
+<p>  简单来说：hibernate把数据库的增删查改代码封装成自己的hql语法，大大简化了写sql语法的时间，使用<strong>反射机制来提高代码灵活性和可配置性，降低代码耦合</strong>，使用映射提高了代码的灵活性、非侵入性、移植性。</p>
+<h3 id="Hibernate的缺点"><a href="#Hibernate的缺点" class="headerlink" title="Hibernate的缺点"></a>Hibernate的缺点</h3><ul>
+<li>无法对 SQL 进行优化</li>
+<li>框架中使用ORM原则, 导致配置过于复杂</li>
+<li>执行效率和原生的 JDBC 相比偏差:，特别是在批量数据处理的时候</li>
+<li>不支持批量修改、删除</li>
+</ul>
+<hr>
+<pre><code>简单说：由于封装的太好了，反而不好使用原生sql语句对数据库优化，ORM原则需要大量的配置，假如有几百张表，需要配置很久。执行效率慢是hibernate默认延迟加载，实际开发中有些情况下会关闭延迟加载（lazy=false）这时大大影响效率，打个比方在“一对多”的关系映射中，查询“一”的一方，那么多的“一方”也会立刻加载出来，如果“一”的一方关联了大量的数据，那么“多”的一方都会被查询出来，造成不必要的资源浪费。</code></pre><h3 id="Hibernate-的缓存机制"><a href="#Hibernate-的缓存机制" class="headerlink" title="Hibernate 的缓存机制"></a>Hibernate 的缓存机制</h3><p><strong>Hibernate 缓存的作用</strong>：Hibernate 是一个持久层框架，经常访问物理数据库，为了降低应用程序对物理数据源访问的频次，从而提高应用程序的运行性能。缓存内的数据是对物理数据源中数据的复制，应用程序在运行时从缓存读写数据，在特定的时刻或事件会同步缓存和物理数据源的数据。</p>
+<p>白话： 假设一万个人需要知道一款手机的价格，那么就需要hibernate去访问数据库查询这款手机的价格，大量的访问数据库导致数据库宕机或其他问题。那么hibernate把这个结果缓存下来。就可以不需要访问数据库来直接给用户返回这款手机的价格。</p>
+<p><strong>Hibernate 缓存分类</strong>：Hibernate 缓存包括两大类：Hibernate 一级缓存和 Hibernate 二级缓存。</p>
+<blockquote>
+<p>Hibernate 一级缓存又称为“Session的缓存”，它是内置的，不能被卸载。由于 Session 对象的生命周期通常对应一个数据库事务或者一个应用事务，因此它的缓存是事务范围的缓存。一级缓存是必需的，不允许而且事实上也无法卸除。在第一级缓存中，持久化类的每个实例都具有唯一的 OID。</p>
+</blockquote>
+<blockquote>
+<p>Hibernate 二级缓存又称为“SessionFactory的缓存”，由于 SessionFactory 对象的生命周期和应用程序的整个过程对应，因此 Hibernate 二级缓存是进程范围或者集群范围的缓存，有可能出现并发问题，因此需要采用适当的并发访问策略，该策略为被缓存的数据提供了事务隔离级别。第二级缓存是可选的，是一个可配置的插件，在默认情况下，SessionFactory 不会启用这个插件</p>
+</blockquote>
+<hr>
+<p><strong>Q:什么样的数据适合存放到第二级缓存中 ？</strong></p>
+<p><strong>A:</strong>很少被修改的数据；不是很重要的数据，允许偶尔出现并发；不会被并发访问的数据；常量数据</p>
+<p><strong>Q:不适合存放到第二级缓存的数据  ？</strong></p>
+<p><strong>A:</strong>经常被修改的数据；绝对不允许出现并发访问的数据，如财务数据；与其他应用共享的数据</p>
+<p><strong>Q:Hibernate 查找对象如何应用缓存 ？</strong></p>
+<p><strong>A:</strong>当 Hibernate 根据 ID 访问数据对象的时候，首先从 Session 一级缓存中查；查不到，如果配置了二级缓存，那么从二级缓存中查；如果都查不到，再查询数据库，把结果按照 ID 放入到缓存，删除、更新、增加数据的时候，同时更新缓存。</p>
+<h3 id="Hibernate-懒加载"><a href="#Hibernate-懒加载" class="headerlink" title="Hibernate 懒加载"></a>Hibernate 懒加载</h3><blockquote>
+<p>懒加载(lazy)就是延迟加载。至于为什么要用懒加载呢，就是当我们要访问的数据量过大时，明显用缓存不太合适，因为内存容量有限，为了减少并发量，减少系统资源的消耗，我们让数据在需要的时候才进行加载，这时 Hibernate 用懒加载机制来弥补这种缺陷，但是这只是弥补而不是用了懒加载总体性能就提高了。</p>
+</blockquote>
+<ul>
+<li><p>对于 Hibernate get 方法，Hibernate 会确认一下该 id 对应的数据是否存在，首先在 session 缓存中查找，然后在二级缓存中查找，还没有就查询数据库，数据库中没有就返回 null。</p>
+</li>
+<li><p>Hibernate load 方法加载实体对象的时候，根据映射文件上类级别的 lazy 属性的配置(默认为true)，分情况讨论：</p>
+<ul>
+<li>若为 true，则首先在 Session 缓存中查找，看看该 id 对应的对象是否存在，不存在则使用延迟加载，返回实体的代理类对象(该代理类为实体类的子类，由CGLIB动态生成)。等到具体使用该对象(除获取OID以外)的时候，再查询二级缓存和数据库，若仍没发现符合条件的记录，则会抛出一个 ObjectNotFoundException。</li>
+<li>若为false，就跟 Hibernateget 方法查找顺序一样，只是最终若没发现符合条件的记录，则会抛出一个 ObjectNotFoundException。</li>
+</ul>
+</li>
+</ul>
+<p>这里 get 和 load 有两个重要区别：</p>
+<ul>
+<li>如果未能发现符合条件的记录， Hibernate get 方法返回 null，而 load 方法会抛出一个 ObjectNotFoundException；</li>
+<li>load 方法可返回没有加载实体数据的代理类实例，而 get 方法永远返回有实体数据的对象。</li>
+</ul>
+<p>总之根本区别 hibernate 对于 load 方法认为该数据在数据库中一定存在，可以放心的使用代理来延迟加载，如果在使用过程中发现了问题，只能抛异常；而对于 get 方 法，hibernate 一定要获取到真实的数据，否则返回 null</p>
+<h3 id="Hibernate-与-MyBatis-的区别"><a href="#Hibernate-与-MyBatis-的区别" class="headerlink" title="Hibernate 与  MyBatis 的区别"></a>Hibernate 与  MyBatis 的区别</h3><ul>
+<li><p><strong>相同点</strong>   </p>
+<ol>
+<li><p>Hibernate与MyBatis都可以是通过SessionFactoryBuider由XML配置文件生成SessionFactory，然后由SessionFactory 生成Session，最后由Session来开启执行事务和SQL语句。</p>
+<p>其中SessionFactoryBuider，SessionFactory，Session的生命周期都是差不多的。Hibernate和MyBatis都支持JDBC和JTA事务处理。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>不同点</strong></p>
+<ol>
+<li><p><font color='red'>hibernate是全自动，而mybatis是半自动</font></p>
+<p>hibernate完全可以通过对象关系模型实现对数据库的操作，拥有完整的JavaBean对象与数据库的映射结构来自动生成sql。而mybatis仅有基本的字段映射，对象数据以及对象实际关系仍然需要通过手写sql来实现和管理。</p>
+</li>
+<li><p><font color='red'>hibernate数据库移植性远大于mybatis</font></p>
+<p>hibernate通过它强大的映射结构和hql语言，大大降低了对象与数据库（Oracle、MySQL等）的耦合性，而mybatis由于需要手写sql，因此与数据库的耦合性直接取决于程序员写sql的方法，如果sql不具通用性而用了很多某数据库特性的sql语句的话，移植性也会随之降低很多，成本很高。</p>
+</li>
+<li><p><font color='red'>hibernate拥有完整的日志系统，mybatis则欠缺一些</font></p>
+<p>hibernate日志系统非常健全，涉及广泛，包括：sql记录、关系异常、优化警告、缓存提示、脏数据警告等；而mybatis则除了基本记录功能外，功能薄弱很多。</p>
+</li>
+<li><p><font color='red'>mybatis相比hibernate需要关心很多细节&lt;</p>
+<p>hibernate配置要比mybatis复杂的多，学习成本也比mybatis高。但也正因为mybatis使用简单，才导致它要比hibernate关心很多技术细节。mybatis由于不用考虑很多细节，开发模式上与传统jdbc区别很小，因此很容易上手并开发项目，但忽略细节会导致项目前期bug较多，因而开发出相对稳定的软件很慢，而开发出软件却很快。hibernate则正好与之相反。但是如果使用hibernate很熟练的话，实际上开发效率丝毫不差于甚至超越mybatis。</p>
+</li>
+<li><p><font color='red'>mybatis相比hibernate需要关心很多细节</font></p>
+<p>hibernate配置要比mybatis复杂的多，学习成本也比mybatis高。但也正因为mybatis使用简单，才导致它要比hibernate关心很多技术细节。mybatis由于不用考虑很多细节，开发模式上与传统jdbc区别很小，因此很容易上手并开发项目，但忽略细节会导致项目前期bug较多，因而开发出相对稳定的软件很慢，而开发出软件却很快。hibernate则正好与之相反。但是如果使用hibernate很熟练的话，实际上开发效率丝毫不差于甚至超越mybatis。</p>
+</li>
+<li><p><font color='red'>缓存机制上，hibernate要比mybatis更好一些</font></p>
+<p>MyBatis的二级缓存配置都是在每个具体的表-对象映射中进行详细配置，这样针对不同的表可以自定义不同的缓存机制。并且Mybatis可以在命名空间中共享相同的缓存配置和实例，通过Cache-ref来实现。</p>
+<p>而Hibernate对查询对象有着良好的管理机制，用户无需关心SQL。所以在使用二级缓存时如果出现脏数据，系统会报出错误并提示。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>Hibernate 优势</strong><br> Hibernate 的 DAO 层开发比 MyBatis 简单，Mybatis 需要维护 SQL 和结果映射。<br> Hibernate 对对象的维护和缓存要比 MyBatis 好，对增删改查的对象的维护要方便。<br> Hibernate 数据库移植性很好，MyBatis 的数据库移植性不好，不同的数据库需要写不同 SQL。<br> Hibernate 有更好的二级缓存机制，可以使用第三方缓存。MyBatis 本身提供的缓存机制不佳。</p>
+</li>
+<li><p><strong>Mybatis 优势</strong><br> MyBatis 可以进行更为细致的 SQL 优化，可以减少查询字段。<br> MyBatis容易掌握，而Hibernate门槛较高。</p>
+</li>
+<li><p><strong>总结</strong></p>
+<ol>
+<li><p><strong>两者相同点</strong><br>Hibernate和Mybatis的二级缓存除了采用系统默认的缓存机制外，都可以通过实现你自己的缓存或为其他第三方缓存方案，创建适配器来完全覆盖缓存行为。</p>
+</li>
+<li><p><strong>两者不同点</strong><br>Hibernate的二级缓存配置在SessionFactory生成的配置文件中进行详细配置，然后再在具体的表-对象映射中配置是那种缓存。而MyBatis在使用二级缓存时需要特别小心。如果不能完全确定数据更新操作的波及范围，避免Cache的盲目使用。否则，脏数据的出现会给系统的正常运行带来很大的隐患。</p>
+</li>
+</ol>
+<p><strong>简单来说</strong>：</p>
+<p>MyBatis：小巧、方便、高效、简单、直接、半自动</p>
+<p>Hibernate：强大、方便、高效、复杂、绕弯子、全自动</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/">Hibernate 框架</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">熊兆鑫</a></p>
+        <p><span>发布时间:</span>2019-12-08, 21:23:46</p>
+        <p><span>最后更新:</span>2020-01-11, 21:02:28</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/" title="Hibernate 框架">https://xiongzhaoxin.github.io/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://xiongzhaoxin.github.io/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/　　作者: 熊兆鑫" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/">
+                    Redis学习笔记(一)
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/">
+                    记录一些面试官问的问题
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hibernate-框架"><span class="toc-number">1.</span> <span class="toc-text">Hibernate 框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一，什么是Hibernate"><span class="toc-number">1.0.1.</span> <span class="toc-text">一，什么是Hibernate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二，什么是ORM"><span class="toc-number">1.0.2.</span> <span class="toc-text">二，什么是ORM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么使用Hibernate（Hibernate的优点）"><span class="toc-number">1.0.3.</span> <span class="toc-text">为什么使用Hibernate（Hibernate的优点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hibernate的缺点"><span class="toc-number">1.0.4.</span> <span class="toc-text">Hibernate的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hibernate-的缓存机制"><span class="toc-number">1.0.5.</span> <span class="toc-text">Hibernate 的缓存机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hibernate-懒加载"><span class="toc-number">1.0.6.</span> <span class="toc-text">Hibernate 懒加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hibernate-与-MyBatis-的区别"><span class="toc-number">1.0.7.</span> <span class="toc-text">Hibernate 与  MyBatis 的区别</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Hibernate 框架　| 熊兆鑫的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/" title="上一篇: Redis学习笔记(一)">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/" title="下一篇: 记录一些面试官问的问题">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/">Redis学习笔记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/Hibernate%20%E6%A1%86%E6%9E%B6/">Hibernate 框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/13/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/">记录一些面试官问的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/12/183.%20%E4%BB%8E%E4%B8%8D%E8%AE%A2%E8%B4%AD%E7%9A%84%E5%AE%A2%E6%88%B7/">183. 从不订购的客户</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/12/182.%E6%9F%A5%E6%89%BE%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/">182.查找重复的电子邮箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/08/%E5%8A%9B%E6%89%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE-2/">力扣数据库题目(2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/08/%E5%8A%9B%E6%89%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE-1/">力扣数据库题目(1)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/02/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2020 熊兆鑫
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
