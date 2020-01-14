@@ -15,14 +15,14 @@
 
 
 
-<meta name="description" content="我的第一篇博客这是我的第一篇技术博客，记录博客内容，不定时发布新东西’熊兆鑫’ Hellowrod">
+<meta name="description" content="java开发保证多次点击的数据一致（如何幂等） 在我以前写过的一个管理系统的项目中，因为时间比较赶，所以没人注意到多次点击的问题，后续的修改bug时发现这个问题，于是百度查看了解决方法。使用Token机制，防止多次提交  首先需要新增一个util工具类，名为TokenUtil： 1234567891011121314151617181920212223public class TokenUtil">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的第一篇博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;xiongzhaoxin.github.io&#x2F;2019&#x2F;10&#x2F;30&#x2F;%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2&#x2F;index.html">
+<meta property="og:title" content="java开发保证多次点击的数据一致（如何幂等）">
+<meta property="og:url" content="https:&#x2F;&#x2F;xiongzhaoxin.github.io&#x2F;2020&#x2F;01&#x2F;14&#x2F;java%E5%BC%80%E5%8F%91%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%EF%BC%88%E5%A6%82%E4%BD%95%E5%B9%82%E7%AD%89%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="熊兆鑫的博客">
-<meta property="og:description" content="我的第一篇博客这是我的第一篇技术博客，记录博客内容，不定时发布新东西’熊兆鑫’ Hellowrod">
+<meta property="og:description" content="java开发保证多次点击的数据一致（如何幂等） 在我以前写过的一个管理系统的项目中，因为时间比较赶，所以没人注意到多次点击的问题，后续的修改bug时发现这个问题，于是百度查看了解决方法。使用Token机制，防止多次提交  首先需要新增一个util工具类，名为TokenUtil： 1234567891011121314151617181920212223public class TokenUtil">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-02T04:04:21.644Z">
+<meta property="og:updated_time" content="2020-01-14T15:15:54.675Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -55,7 +55,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>我的第一篇博客 | 熊兆鑫的博客</title>
+<title>java开发保证多次点击的数据一致（如何幂等） | 熊兆鑫的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -259,11 +259,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-我的第一篇博客" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-java开发保证多次点击的数据一致（如何幂等）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/10/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
-      <time datetime="2019-10-30T14:28:58.000Z" itemprop="datePublished">2019-10-30</time>
+      <a href="/2020/01/14/java%E5%BC%80%E5%8F%91%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%EF%BC%88%E5%A6%82%E4%BD%95%E5%B9%82%E7%AD%89%EF%BC%89/" class="article-date">
+      <time datetime="2020-01-14T15:18:45.000Z" itemprop="datePublished">2020-01-14</time>
 </a>
 
 
@@ -278,7 +278,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      我的第一篇博客
+      java开发保证多次点击的数据一致（如何幂等）
     </h1>
   
 
@@ -295,8 +295,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>这是我的第一篇技术博客，记录博客内容，不定时发布新东西’熊兆鑫’</p>
-<h2 id="Hellowrod"><a href="#Hellowrod" class="headerlink" title="Hellowrod"></a>Hellowrod</h2>
+        <h1 id="java开发保证多次点击的数据一致（如何幂等）"><a href="#java开发保证多次点击的数据一致（如何幂等）" class="headerlink" title="java开发保证多次点击的数据一致（如何幂等）"></a>java开发保证多次点击的数据一致（如何幂等）</h1><blockquote>
+<p>在我以前写过的一个管理系统的项目中，因为时间比较赶，所以没人注意到多次点击的问题，后续的修改bug时发现这个问题，于是百度查看了解决方法。使用Token机制，防止多次提交</p>
+</blockquote>
+<p><strong>首先需要新增一个util工具类，名为TokenUtil：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenUtil</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String cons = <span class="string">"@_____@token@________@"</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">setToken</span><span class="params">(javax.servlet.http.HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">		javax.servlet.http.HttpSession session = request.getSession();</span><br><span class="line">		String token = String.valueOf(java.util.UUID.randomUUID()) + String.valueOf(System.currentTimeMillis());</span><br><span class="line">		session.setAttribute(<span class="string">"@_____@token@________@"</span>, token);</span><br><span class="line">		String html = <span class="string">"&lt;input type=\"hidden\" name=\"@_____@token@________@\" value='"</span> + token + <span class="string">"'/&gt;"</span>;</span><br><span class="line">		<span class="keyword">return</span> html;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isToken</span><span class="params">(javax.servlet.http.HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">		javax.servlet.http.HttpSession session = request.getSession();</span><br><span class="line">		String token = (String) session.getAttribute(cons);</span><br><span class="line">		<span class="keyword">if</span> (token == <span class="keyword">null</span>)</span><br><span class="line">			token = <span class="string">""</span>;</span><br><span class="line">		String tv = request.getParameter(cons);</span><br><span class="line"> </span><br><span class="line">		session.removeAttribute(cons);</span><br><span class="line">		<span class="keyword">return</span> token.equals(tv);</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我的情况是在jsp页面发送ajax请求，所以jsp页面也需要几行代码</p>
+<p><strong>在jsp页面引入这个util工具类：（<code>以下代码是我的路径，复制后需要改成自己本机上这个类的路径</code>）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">"com.muen.util.TokenUtils"</span> %&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>接着需要在form表单中插入以下代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%=TokenUtils.setToken(request) %&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>然后在controller层加入判断</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"insert"</span>, method = RequestMethod.POST)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insert</span><span class="params">(SysYhzc sysYhzc,HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (TokenUtils.isToken(request)) &#123;</span><br><span class="line">			<span class="keyword">return</span> creditOrgService.insert(sysYhzc);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -304,13 +319,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/10/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a></p>
+        <p><span>本文标题:</span><a href="/2020/01/14/java%E5%BC%80%E5%8F%91%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%EF%BC%88%E5%A6%82%E4%BD%95%E5%B9%82%E7%AD%89%EF%BC%89/">java开发保证多次点击的数据一致（如何幂等）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">熊兆鑫</a></p>
-        <p><span>发布时间:</span>2019-10-30, 22:28:58</p>
-        <p><span>最后更新:</span>2019-11-02, 12:04:21</p>
+        <p><span>发布时间:</span>2020-01-14, 23:18:45</p>
+        <p><span>最后更新:</span>2020-01-14, 23:15:54</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/10/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" title="我的第一篇博客">https://xiongzhaoxin.github.io/2019/10/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://xiongzhaoxin.github.io/2019/10/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/　　作者: 熊兆鑫" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/01/14/java%E5%BC%80%E5%8F%91%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%EF%BC%88%E5%A6%82%E4%BD%95%E5%B9%82%E7%AD%89%EF%BC%89/" title="java开发保证多次点击的数据一致（如何幂等）">https://xiongzhaoxin.github.io/2020/01/14/java%E5%BC%80%E5%8F%91%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%EF%BC%88%E5%A6%82%E4%BD%95%E5%B9%82%E7%AD%89%EF%BC%89/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://xiongzhaoxin.github.io/2020/01/14/java%E5%BC%80%E5%8F%91%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%EF%BC%88%E5%A6%82%E4%BD%95%E5%B9%82%E7%AD%89%EF%BC%89/　　作者: 熊兆鑫" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -322,12 +337,12 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/11/02/hello-world/">
-                    Hello World
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/">
+                    Redis学习笔记(一)
                 </a>
             </div>
-        
         
     </nav>
 
@@ -337,7 +352,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#我的第一篇博客"><span class="toc-number">1.</span> <span class="toc-text">我的第一篇博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hellowrod"><span class="toc-number">2.</span> <span class="toc-text">Hellowrod</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java开发保证多次点击的数据一致（如何幂等）"><span class="toc-number">1.</span> <span class="toc-text">java开发保证多次点击的数据一致（如何幂等）</span></a></li></ol>
         
     </div>
     <style>
@@ -373,7 +388,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"我的第一篇博客　| 熊兆鑫的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"java开发保证多次点击的数据一致（如何幂等）　| 熊兆鑫的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -393,15 +408,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/11/02/hello-world/" title="上一篇: Hello World">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2020/01/02/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/" title="下一篇: Redis学习笔记(一)">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 

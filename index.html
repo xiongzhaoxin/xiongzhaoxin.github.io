@@ -265,6 +265,77 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-java开发保证多次点击的数据一致（如何幂等）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/01/14/java%E5%BC%80%E5%8F%91%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%EF%BC%88%E5%A6%82%E4%BD%95%E5%B9%82%E7%AD%89%EF%BC%89/" class="article-date">
+      <time datetime="2020-01-14T15:18:45.000Z" itemprop="datePublished">2020-01-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/14/java%E5%BC%80%E5%8F%91%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%EF%BC%88%E5%A6%82%E4%BD%95%E5%B9%82%E7%AD%89%EF%BC%89/">java开发保证多次点击的数据一致（如何幂等）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="java开发保证多次点击的数据一致（如何幂等）"><a href="#java开发保证多次点击的数据一致（如何幂等）" class="headerlink" title="java开发保证多次点击的数据一致（如何幂等）"></a>java开发保证多次点击的数据一致（如何幂等）</h1><blockquote>
+<p>在我以前写过的一个管理系统的项目中，因为时间比较赶，所以没人注意到多次点击的问题，后续的修改bug时发现这个问题，于是百度查看了解决方法。使用Token机制，防止多次提交</p>
+</blockquote>
+<p><strong>首先需要新增一个util工具类，名为TokenUtil：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenUtil</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String cons = <span class="string">"@_____@token@________@"</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">setToken</span><span class="params">(javax.servlet.http.HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">		javax.servlet.http.HttpSession session = request.getSession();</span><br><span class="line">		String token = String.valueOf(java.util.UUID.randomUUID()) + String.valueOf(System.currentTimeMillis());</span><br><span class="line">		session.setAttribute(<span class="string">"@_____@token@________@"</span>, token);</span><br><span class="line">		String html = <span class="string">"&lt;input type=\"hidden\" name=\"@_____@token@________@\" value='"</span> + token + <span class="string">"'/&gt;"</span>;</span><br><span class="line">		<span class="keyword">return</span> html;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isToken</span><span class="params">(javax.servlet.http.HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">		javax.servlet.http.HttpSession session = request.getSession();</span><br><span class="line">		String token = (String) session.getAttribute(cons);</span><br><span class="line">		<span class="keyword">if</span> (token == <span class="keyword">null</span>)</span><br><span class="line">			token = <span class="string">""</span>;</span><br><span class="line">		String tv = request.getParameter(cons);</span><br><span class="line"> </span><br><span class="line">		session.removeAttribute(cons);</span><br><span class="line">		<span class="keyword">return</span> token.equals(tv);</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我的情况是在jsp页面发送ajax请求，所以jsp页面也需要几行代码</p>
+<p><strong>在jsp页面引入这个util工具类：（<code>以下代码是我的路径，复制后需要改成自己本机上这个类的路径</code>）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">"com.muen.util.TokenUtils"</span> %&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>接着需要在form表单中插入以下代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%=TokenUtils.setToken(request) %&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>然后在controller层加入判断</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"insert"</span>, method = RequestMethod.POST)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insert</span><span class="params">(SysYhzc sysYhzc,HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (TokenUtils.isToken(request)) &#123;</span><br><span class="line">			<span class="keyword">return</span> creditOrgService.insert(sysYhzc);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Redis学习笔记(一)" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
